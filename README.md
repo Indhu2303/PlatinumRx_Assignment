@@ -1,7 +1,7 @@
 # PlatinumRx Data Analyst Assignment
 
 ## Author
-[Your Name] | [Your Email]
+INDHU SANAPATHI | sanapathiindhu2003@gmail.com
 
 ---
 
