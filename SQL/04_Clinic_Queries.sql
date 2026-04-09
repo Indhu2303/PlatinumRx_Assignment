@@ -8,10 +8,6 @@
 -- ============================================================
 -- Q1: Revenue from each SALES CHANNEL in a given year
 -- ============================================================
--- LOGIC:
---   GROUP BY sales_channel and SUM the amount.
---   Filter by YEAR = 2021.
--- ============================================================
 
 SELECT
     sales_channel,
@@ -25,11 +21,6 @@ ORDER BY total_revenue DESC;
 
 -- ============================================================
 -- Q2: Top 10 most VALUABLE CUSTOMERS for a given year
--- ============================================================
--- LOGIC:
---   JOIN clinic_sales with customer to get names.
---   SUM amount per customer, filter by year.
---   ORDER by total DESC, LIMIT 10.
 -- ============================================================
 
 SELECT
@@ -48,12 +39,6 @@ LIMIT 10;
 
 -- ============================================================
 -- Q3: Month-wise REVENUE, EXPENSE, PROFIT and STATUS
--- ============================================================
--- LOGIC:
---   CTE 1: Monthly revenue per clinic from clinic_sales.
---   CTE 2: Monthly expenses per clinic from expenses.
---   JOIN on clinic + month, calculate profit = revenue - expense.
---   CASE WHEN profit >= 0 → 'Profitable', else → 'Not-Profitable'
 -- ============================================================
 
 WITH monthly_revenue AS (
@@ -97,12 +82,6 @@ ORDER BY r.month_num, cl.clinic_name;
 -- ============================================================
 -- Q4: For each CITY, find the MOST PROFITABLE clinic
 --     for a given month
--- ============================================================
--- LOGIC:
---   Step 1: Calculate profit per clinic per month (same as Q3).
---   Step 2: Use RANK() partitioned by city + month,
---           ordered by profit DESC → rank 1 = most profitable.
---   Step 3: Filter WHERE rank = 1.
 -- ============================================================
 
 WITH clinic_profit AS (
@@ -162,12 +141,6 @@ ORDER BY city, month_num;
 -- ============================================================
 -- Q5: For each STATE, find the SECOND LEAST PROFITABLE clinic
 --     for a given month
--- ============================================================
--- LOGIC:
---   Same profit calculation as Q4.
---   Use DENSE_RANK() partitioned by state + month,
---   ordered by profit ASC → rank 1 = least, rank 2 = second least.
---   Filter WHERE rank = 2.
 -- ============================================================
 
 WITH clinic_profit AS (
